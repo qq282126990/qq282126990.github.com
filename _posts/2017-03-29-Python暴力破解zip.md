@@ -1,29 +1,28 @@
 ---
 layout: post
 title: "Python暴力破解zip"
-date: 2017-03-29 
+date: 2017-03-29
 description: "Python暴力破解zip"
 tag: 博客 
 ---   
 
-　　经过各种找资料，踩过各种坑，终于使用 hexo 搭建个人博客初步完成了，域名目前用得时 github 的，我的 hexo 是 3.1.1 版本，hexo 不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。     
+  在这个压缩包泛滥的时代，加密的压缩包更是数不剩数，然而当人们下载下来时发现压缩包被加密了，瞬间感到绝望。   
+  人们想进办法去查看加密压缩包里面的东西，最后都是无功而返。   
+  本文将带领大家如何用python暴力破解zip密码。   
 
-　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我 ＱＱ：1499065178　，或者给我发邮件：[leopardpan@icloud.com](mailto:leopardpan@icloud.com)  ，都可以，如果你已经搭建完成了，可以看看我的另一篇博客[HEXO进阶](http://baixin.io/2016/06/HEXO_Advanced/)，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。我现在的博客是使用 Jekyll 搭建的，如果你想使用我现在的模板请看[Jekyll搭建个人博客](http://baixin.io/2016/10/jekyll_tutorials1/) 
- 
+## 正文
+  目前我们已知的破解zip的方式只有“Known plaintext attack”和“暴力破解”。   
+  “Known plaintext attack”的最大缺点是有比较大的局限性。  
+  "暴力破解"需要密码字典去破解，遇到复杂度教高的密码时破解时间变得非常长。  
 
-## 正文：
-　这边教程是针对与Mac的，[参考链接](http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool)，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。
+## 配置环境
 
-　之前是想着写博客，一方面是给自己做笔记，可以提升自己的写作、总结能力，一个技术点我们会使用，并不难，但是要做到让让别人也能听懂我们讲得，还是需要一定的技巧和经验的。很多类似于CSDN、博客园也都可以写文章，但是页面的样式我，不是太喜欢，简书还算好点得。最近看到一些大神们的博客（在我的友情链接里有），貌似都是用hexo写得，我也依葫芦画瓢的搭建了一个。不罗嗦了，直接上搭建步骤。
- 
-## 配置环境     
-
-### 安装Node（必须）         
+### 安装Node（必须）
 
 作用：用来生成静态页面的
 到Node.js[官网](https://nodejs.org/)下载相应平台的最新版本，一路安装即可。
 
-### 安装Git（必须）     
+### 安装Git（必须）
 作用：把本地的hexo内容提交到github上去.
 安装Xcode就自带有Git，我就不多说了。
 
@@ -34,7 +33,7 @@ tag: 博客
 ### 正式安装HEXO　
 Node和Git都安装好后，可执行如下命令安装hexo：
 
-	$ sudo npm install -g hexo
+    $ sudo npm install -g hexo
 
 ### 初始化
 创建一个文件夹，如：Blog，cd到Blog里执行hexo init的。命令：
@@ -186,34 +185,7 @@ Markdown语法参考链接: [作业部落](https://www.zybuluo.com/mdeditor)
 
 ### Q&A
 
-> 
-# -*- coding:utf-8 -*-
-'''
- @ function: 生成随机密码字典
-'''
-import random
-class Dictor():
-    CSet=' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_-+=/*<>:;\'"[]{}|'
-    def __init__(self,minlen,maxlen):
-        if maxlen>minlen:
-            self.__minlen=minlen
-            self.__maxlen=maxlen
-        else:
-            self.__minlen=maxlen
-            self.__maxlen=minlen
-    def __iter__(self):
-        return self
-    def __next__(self):
-        ret=''
-        for i in range(0,random.randrange(self.__minlen,self.__maxlen+1)):
-            ret+=random.choice(Dictor.CSet)
-        return ret
-if __name__=='__main__':
-	dic = open("pass.txt","a")
-	for str in Dictor(6,16):
-		dic.write("".join(str))
-		dic.write("".join("\n"))
-	dic.close()      
+> 问：如何让文章想只显示一部分和一个 `阅读全文` 的按钮？       
 > 答：在文章中加一个 `<!--more-->` ， `<!--more-->` 后面的内容就不会显示出来了。
 
 <p> </p>
