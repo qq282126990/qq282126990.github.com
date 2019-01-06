@@ -5,8 +5,7 @@ title: 关于
 
 ## **我是谁**
 
-旋涡鸣人（Naruto），90 后，前端黑科技爱好者,主要技能Vue36计Node.js,PWA。重度PWA患者,后端渣渣,    
-偶尔研究下python。
+旋涡鸣人（Naruto），90 后，前端黑科技爱好者,主要技能Vue,Node.js,PWA。
 
 ## **工作**   
  
